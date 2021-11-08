@@ -6,9 +6,11 @@ using TMPro;
 public class ScoreSystem : MonoBehaviour, IRestartable
 {
     [SerializeField]
-    private TextMeshProUGUI scoreText   = null;
+    private TextMeshProUGUI scoreText       = null;
     [SerializeField]
-    private float           score       = 0;
+    private TextMeshProUGUI bestScoreText   = null;
+    [SerializeField]
+    private float           score           = 0;
 
     private Ray         ray     = new Ray ();
     private RaycastHit  hit     = new RaycastHit ();
@@ -22,6 +24,7 @@ public class ScoreSystem : MonoBehaviour, IRestartable
 
     private void Start() 
     {
+        bestScoreText.SetText (PlayerPrefs.HasKey ("BestScore") ? "The Best Score: " + PlayerPrefs.GetFloat ("BestScore").ToString () : "You hasn`t previous records");
         camera = this.GetComponent <Camera> ();
         Menu.RestartScripts.Add (this);
         Cursor.lockState = CursorLockMode.Locked;
@@ -45,6 +48,19 @@ public class ScoreSystem : MonoBehaviour, IRestartable
 
     public void Restart ()
     {
+        if (PlayerPrefs.HasKey ("BestScore"))
+        {
+            if (PlayerPrefs.GetFloat ("BestScore") < score)
+            {
+                PlayerPrefs.SetFloat ("BestScore", score);
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetFloat ("BestScore", score);
+        }
+        PlayerPrefs.Save ();
+        bestScoreText.SetText ("The Best Score: " + PlayerPrefs.GetFloat ("BestScore").ToString ());
         AddScore (-score);
     }
 }
