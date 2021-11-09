@@ -44,6 +44,7 @@ public class BallSpawner : MonoBehaviour, IRestartable
         exemplar.transform.GetComponent<Renderer>().material.color = Random.ColorHSV ();
 
         float randScale                 = Random.Range (1, maxSize);
+        
         exemplar.transform.localScale   = new Vector3 (randScale, randScale, randScale);
         scriptExemplar                  = exemplar.GetComponent<BallBehaviour> ();
         scriptExemplar.Speed            = speedMultiplier * Random.value;

@@ -7,9 +7,9 @@ public class CameraRotate : MonoBehaviour
     [SerializeField]
     private float rotationSpeed = 1;
     [SerializeField]
-    private float minYRotation = -30;
+    private float minYRotation  = -30;
     [SerializeField]
-    private float maxYRotation = 60;
+    private float maxYRotation  = 60;
     
     private float yRotation = 0;
 

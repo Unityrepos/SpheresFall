@@ -11,18 +11,18 @@ public class PlayerMove : MonoBehaviour, IRestartable
     [SerializeField]
     private float minSpeed  = 7;
 
-    private float       speed = 10;
-    private Rigidbody   rb;
+    private float       speed   = 10;
+    private Rigidbody   rb      = null;
 
     void Start ()
     {
         Menu.RestartScripts.Add (this);
-        //transform = this.transform;
+        
         rb = this.GetComponent<Rigidbody>();
     }
     void Update ()
     {
-        if (Input.GetKeyDown (KeyCode.LeftShift))
+        if      (Input.GetKeyDown (KeyCode.LeftShift))
         {
             speed = maxSpeed;
         }

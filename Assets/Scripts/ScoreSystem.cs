@@ -5,13 +5,14 @@ using TMPro;
 
 public class ScoreSystem : MonoBehaviour, IRestartable
 {
-    private Ray ray;
-    private RaycastHit hit;
     [SerializeField]
-    private TextMeshProUGUI scoreText;
+    private TextMeshProUGUI scoreText   = null;
     [SerializeField]
-    private float score;
-    private Camera camera;
+    private float           score       = 0;
+
+    private Ray         ray     = new Ray ();
+    private RaycastHit  hit     = new RaycastHit ();
+    private Camera      camera  = null;
     
     private void AddScore (float scoreAdd)
     {

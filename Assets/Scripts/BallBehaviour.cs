@@ -19,13 +19,14 @@ public class BallBehaviour : MonoBehaviour, IRestartable
             this.GetComponent<Rigidbody>().velocity = new Vector3 (0, -speed, 0);
         }
     }
-    public float Score { get => score; set => score = value; }
-    public float Damage { get => damage; set => damage = value; }
+    public float Score  { get => score;     set => score    = value; }
+    public float Damage { get => damage;    set => damage   = value; }
 
     public void Init ()
     {
         Menu.RestartScripts.Add (this);
         tr = this.GetComponent <Transform>();
+
         particleSystem = tr.GetChild (0).GetComponent<ParticleSystem>();
         particleSystem.Pause ();
         particleSystem.startColor = tr.GetComponent<Renderer>().material.color;
@@ -53,6 +54,6 @@ public class BallBehaviour : MonoBehaviour, IRestartable
         yield return new WaitForSeconds (.1f);
         particleSystem.Stop ();
         Menu.RestartScripts.Remove (this);
-        Destroy(this.gameObject);
+        Destroy (this.gameObject);
     }
 }

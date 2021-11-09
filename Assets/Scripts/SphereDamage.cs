@@ -5,12 +5,13 @@ using UnityEngine;
 public class SphereDamage : MonoBehaviour, IRestartable
 {
     [SerializeField]
-    private float maxHp = 100;
+    private float   maxHp   = 100;
     [SerializeField]
-    private float hp = 100;
+    private float   hp      = 100;
     [SerializeField]
-    private Camera camera;
-    private Menu menu;
+    private Camera  camera  = null;
+
+    private Menu menu = null;
 
     private void Start() 
     {

@@ -7,8 +7,9 @@ public class Menu : MonoBehaviour
     private static List <IRestartable> restartScripts = new List<IRestartable> ();
 
     [SerializeField]
-    private GameObject restartButton;
-    private bool isMenuActive;
+    private GameObject restartButton = null;
+    
+    private bool isMenuActive = false;
 
     public static List<IRestartable> RestartScripts { get => restartScripts; set => restartScripts = value; }
 
@@ -27,7 +28,9 @@ public class Menu : MonoBehaviour
     {
         isMenuActive = !isMenuActive;
         restartButton.SetActive (isMenuActive);
+
         Time.timeScale = isMenuActive ? 0 : 1;
+        
         Cursor.lockState = isMenuActive ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = isMenuActive;
     }
